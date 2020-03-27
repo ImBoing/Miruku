@@ -15,7 +15,7 @@ module.exports = {
         try {
             if(message.channel.parentID !== '690370450219335681') return;
 
-            const user = message.guild.members.cache.get(message.channel.name);
+            const user = bot.members.cache.get(message.channel.name);
             const channel = message.channel
 
             channel.delete()
