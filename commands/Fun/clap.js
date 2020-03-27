@@ -15,7 +15,9 @@ module.exports = {
             if(!claptxt)
                 return message.channel.send('Hey idiot, tell me what to say')
 
-            message.channel.send(claptxt)
+            await message.delete()
+
+            await message.channel.send(claptxt)
         }
         catch(err) {
             const owner = await bot.fetchApplication().then(async application => `${application.owner.tag}`)
