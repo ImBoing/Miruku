@@ -10,14 +10,19 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         try {
-            const claptxt = args.slice(0).join(" :clap: ")
+            const split = args[0].split('');
+            const result = split.join(' 👏 ')
 
-            if(!claptxt)
+            if(!args[0])
                 return message.channel.send('Hey idiot, tell me what to say')
 
-            await message.delete()
-
-            await message.channel.send(claptxt)
+            if(args.length === 1) {
+                message.delete()
+                await message.channel.send(result)
+            } else {
+                message.delete()
+                await message.channel.send(args.join(' 👏 '))
+            }
         }
         catch(err) {
             const owner = await bot.fetchApplication().then(async application => `${application.owner.tag}`)
