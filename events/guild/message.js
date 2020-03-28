@@ -29,7 +29,7 @@ module.exports = async (bot, message) => {
         // Embed with staff members message
         const mg = new MessageEmbed()
             .setColor(good)
-            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+            .setAuthor(message.author.tag, message.author.displayAvatarURL(), `https://discordapp.com/users/${message.author.id}`)
             .setDescription(message.content)
             .setFooter("Message recieved")
             .setTimestamp();
@@ -87,7 +87,7 @@ module.exports = async (bot, message) => {
                 // Sends user's message to thread
                 const cntn = new MessageEmbed()
                     .setColor(good)
-                    .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL(), `https://discordapp.com/users/${message.author.id}`)
                     .setDescription(message.content)
                     .setFooter("Message recieved")
                     .setTimestamp();
@@ -100,7 +100,7 @@ module.exports = async (bot, message) => {
         const destination = guild.channels.cache.find((c) => c.name === message.author.id);
         const embed = new MessageEmbed()
             .setColor(good)
-            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+            .setAuthor(message.author.tag, message.author.displayAvatarURL(), `https://discordapp.com/users/${message.author.id}`)
             .setDescription(message.content)
             .setFooter("Message recieved")
             .setTimestamp();
