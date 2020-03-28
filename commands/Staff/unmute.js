@@ -14,7 +14,7 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if(!message.member.hasPermission(['MANAGE_MESSAGES']))
-            return message.channel.send('Hey dummy, you are missing the `MANAGE_MESSAGES` permission.\nMake sure you have access to **manage and remove messages** and try again ')
+            return message.channel.send('Hey dummy, you are missing the `MANAGE_MESSAGES` permission.\nMake sure you have access to **manage and remove messages** and try again')
 
         const unmute = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0])
 

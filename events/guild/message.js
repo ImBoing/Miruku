@@ -1,6 +1,6 @@
 const { prefix } = require("../../Utils/botconfig.json");
 const { MessageEmbed } = require("discord.js");
-const { good, bb } = require("../../Utils/colors.json");
+const { good } = require("../../Utils/colors.json");
 
 module.exports = async (bot, message) => {
 
@@ -26,10 +26,19 @@ module.exports = async (bot, message) => {
 
     // If the message wat sent in a guild channel
     if (message.guild) {
+        // Embed with staff members message
+        const mg = new MessageEmbed()
+            .setColor(good)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+            .setDescription(message.content)
+            .setFooter("Message recieved")
+            .setTimestamp();
+
         // Send the user a message
         const sent = await bot.users.cache
             .get(message.channel.name)
-            .send(message.content) // Returns true if successfully sent
+                
+            .send(mg) // Returns true if successfully sent
             .catch(() => {}); // Returns false if there's an error
         message.react(sent ? "✅" : "❌"); // React with the correct emoji
     } else if (!guild.channels.cache.some((ch) => ch.name === message.author.id)) {
@@ -43,8 +52,8 @@ module.exports = async (bot, message) => {
             .setFooter("Your message has been sent", guild.iconURL())
             .setTimestamp();
 
-        await message.author.send(opened).then(() => message.react("✅"));
-
+        await message.author.send(opened).then(() => message.react('✅'));
+        
         // Creates the thread channel
         guild.channels
             .create(message.author.id, {
@@ -77,7 +86,7 @@ module.exports = async (bot, message) => {
 
                 // Sends user's message to thread
                 const cntn = new MessageEmbed()
-                    .setColor(bb)
+                    .setColor(good)
                     .setAuthor(message.author.tag, message.author.displayAvatarURL())
                     .setDescription(message.content)
                     .setFooter("Message recieved")
@@ -87,12 +96,10 @@ module.exports = async (bot, message) => {
             })
             .catch((err) => console.log(err));
     } else {
-        // If there us already a thread
-
-        // Find the thread channel
+        // If there us already a thread then find the opened thread
         const destination = guild.channels.cache.find((c) => c.name === message.author.id);
         const embed = new MessageEmbed()
-            .setColor(bb)
+            .setColor(good)
             .setAuthor(message.author.tag, message.author.displayAvatarURL())
             .setDescription(message.content)
             .setFooter("Message recieved")
