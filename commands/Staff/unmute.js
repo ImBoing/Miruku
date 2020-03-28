@@ -25,7 +25,7 @@ module.exports = {
             return message.channel.send('Are you serious? That user isn\'t even muted ')
 
         unmute.roles.remove('Muted')
-
+        message.channel.send(`**${unmute.user.username} has been unmuted, congratulations`)
         unmute.send(`You have been unmuted in ${message.guild.name}\n**By:** ${message.author.tag}`)
     }
 }

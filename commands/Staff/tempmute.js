@@ -13,17 +13,18 @@ module.exports = {
         accessibility: "Staff members"
     },
     run: async (bot, message, args) => {
-        let target = message.guild.member(message.mentions.members.first() || message.guild.members.get(args[0]));
-        let muteReason = args.slice(2).join(' ') || "No reason specified";
-        let arr = ["615738440147009537", "615738442516791296", "615738444550766593"]
+        if(!message.member.hasPermission(['MANAGE_MESSAGES']))
+            return message.channel.send('Hey dummy, you are missing the `MANAGE_MESSAGES` permission.\nMake sure you have access to **manage and remove messages** and try again')
+        
+        const target = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0]);
+        const reason = args.slice(2).join(' ') || "No reason specified";
+        
+        if(!target) return message.reply("Please specify a user");
+        
+        const muterole = message.guild.roles.cache.find(r => r.name === 'Muted');
 
-        if (!target) return message.reply("Please specify a user");
-        if (!message.member.roles.some(i => arr.includes(i.id))) return message.channel.send("You do not have permission to use command this sorry");
-        if (target.roles.some(i => arr.includes(i.id))) return message.channel.send("You can not mute a staff member");
-        let muterole = message.guild.roles.find(`name`, "Muted");
-
-        if (message.guild.roles.has(muterole)) return;
-        if (!muterole) {
+        if(message.guild.roles.cache.has(muterole)) return;
+        if(!muterole) {
             try {
                 muterole = await message.guild.createRole({
                     name: "Muted",
@@ -40,8 +41,8 @@ module.exports = {
                 console.log(e.stack);
             }
         }
-        let muteTime = args[1];
-        if (!muteTime) return message.reply(`Please specify how long I should mute <@${target.id}>`);
+        const muteTime = args[1];
+        if(!muteTime) return message.reply(`Please specify how long I should mute <@${target.id}>`);
 
         function mutedTime(muteTime) {
             if (muteTime.includes("1s")) {
@@ -77,24 +78,13 @@ module.exports = {
             }
         }
 
-        await (target.addRole(muterole.id));
-        let TMembed = new Discord.RichEmbed()
-            .setColor(colors.b_orange)
-            .setDescription(`<@${target.id}> has been muted for ${mutedTime(muteTime)}\n\n` +
-                "**Reason:**\n" +
-                muteReason)
-            .setFooter(`shit`)
-        message.channel.send(TMembed)
-        target.send(`You have been muted for ${mutedTime(muteTime)} by ${message.author}`)
+        await (target.roles.add(muterole));
+        message.channel.send(`**${target.user.username}** has been muted for ${mutedTime(muteTime)}, must suck to be them`)
+        target.send(`You have been muted from ${message.guild.name} for ${mutedTime(muteTime)}\n**Reason:** ${reason}\n**Responsible Staff Member:** ${message.author.tag}`)
 
-        setTimeout(function () {
-            target.removeRole(muterole.id)
-            let TOembed = new Discord.RichEmbed()
-            .setColor(colors.b_orange)
-                .setDescription(`<@${target.id}> has been unmuted`)
-            target.send(`You have been unmuted in ${message.guild.name}`)
-
-            message.channel.send(TOembed).then(message => message.delete(2500));
+        setTimeout(() => {
+            target.roles.remove(muterole.id)
+            target.send(`Your ${mutedTime(muteTime)} in ${message.guild.name} has expried, congratulations`)
         }, ms(muteTime));
     }
 }
