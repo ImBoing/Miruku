@@ -35,13 +35,15 @@ module.exports = async (bot, message) => {
             .setTimestamp();
 
         // Send the user a message
+        const array = message.channel.topic
+        const id = array.split(' ')[2]
         const sent = await bot.users.cache
-            .get(message.channel.name)
+            .get(id)
                 
             .send(mg) // Returns true if successfully sent
             .catch(() => {}); // Returns false if there's an error
         message.react(sent ? "✅" : "❌"); // React with the correct emoji
-    } else if (!guild.channels.cache.some((ch) => ch.name === message.author.id)) {
+    } else if (!guild.channels.cache.some((ch) => ch.topic === 'Modmail channel '+ message.author.id + '(Please do not change)')) {
         // If there is no thread
 
         // Sends the user a success message
@@ -56,7 +58,7 @@ module.exports = async (bot, message) => {
         
         // Creates the thread channel
         guild.channels
-            .create(message.author.id, {
+            .create(message.author.tag.replace('#','-'), {
                 parent: "690370450219335681",
                 permissionOverwrites: [
                     {
@@ -74,6 +76,7 @@ module.exports = async (bot, message) => {
                 ]
             })
             .then(threadChannel => {
+                threadChannel.setTopic('Modmail channel '+ message.author.id + ' (Please do not change)')
                 // Instructions for the staff member
                 const embed = new MessageEmbed()
                     .setTitle("New Thread")
@@ -97,7 +100,7 @@ module.exports = async (bot, message) => {
             .catch((err) => console.log(err));
     } else {
         // If there us already a thread then find the opened thread
-        const destination = guild.channels.cache.find((c) => c.name === message.author.id);
+        const destination = guild.channels.cache.find((c) => c.topic === 'Modmail channel '+ message.author.id + ' (Please do not change)');
         const embed = new MessageEmbed()
             .setColor(good)
             .setAuthor(message.author.tag, message.author.displayAvatarURL(), `https://discordapp.com/users/${message.author.id}`)

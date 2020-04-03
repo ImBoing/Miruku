@@ -12,13 +12,15 @@ module.exports = {
         accessibility: "staff",
         example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
-    run: async (bot, message, args, user) => {
+    run: async (bot, message, args) => {
         try {
             if(message.channel.parentID !== '690370450219335681') return;
 
-            const user = bot.users.cache.get(message.channel.name);
+            const array = message.channel.topic
+            const id = array.split(' ')[2]
+            const user = bot.users.cache.get(id)
+            
             const channel = message.channel
-
             channel.delete()
 
             const close = new MessageEmbed()
