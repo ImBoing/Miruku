@@ -10,7 +10,8 @@ module.exports = {
         description: "Shows information about the channel",
         category:"Core",
         noalias: "No Aliases",
-        accessibility: "All members"
+        accessibility: "All members",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
         try {

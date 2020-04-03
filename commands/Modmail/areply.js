@@ -9,7 +9,8 @@ module.exports = {
         description: "removes a user from Modmail thread",
         category:"Modmail",
         noalias: "d",
-        accessibility: "d"
+        accessibility: "d",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args, user) => {
         try {

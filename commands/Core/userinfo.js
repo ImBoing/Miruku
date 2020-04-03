@@ -9,7 +9,8 @@ module.exports = {
         description: "Displays info about you or mentioned user",
         category:"Core",
         noalias: "No Aliases",
-        accessibility: "All members on the server"
+        accessibility: "All members on the server",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
         let sEmbed = new Discord.RichEmbed()

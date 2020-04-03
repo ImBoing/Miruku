@@ -6,7 +6,8 @@ module.exports = {
         description: "closes thread anonmusly",
         category:"Modmail",
         noalias: "",
-        accessibility: ""
+        accessibility: "",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args, user) => {
         try {

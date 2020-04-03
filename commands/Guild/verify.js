@@ -11,7 +11,8 @@ module.exports = {
         description: "The bot messages the user a verification code",
         category:"Guild",
         noalias: "",
-        accessibility: "Everyone"
+        accessibility: "Everyone",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
        if(message.channel.id === '679417535871057950'){

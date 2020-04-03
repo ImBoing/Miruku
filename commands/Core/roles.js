@@ -10,7 +10,8 @@ module.exports = {
         description: "Displays all the roles on the server",
         category:"Core",
         noalias: "",
-        accessibility: "Everyone"
+        accessibility: "Everyone",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
         if(args[0] === 'roles') {

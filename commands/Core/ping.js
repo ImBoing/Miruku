@@ -6,7 +6,8 @@ module.exports = {
         description: "Used to test Mirukus response time",
         category:"Core",
         noalias: "sdf",
-        accessibility: "sdf"
+        accessibility: "sdf",
+        example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
         try {
