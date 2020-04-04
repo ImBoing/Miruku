@@ -43,7 +43,7 @@ module.exports = async (bot, message) => {
             .send(mg) // Returns true if successfully sent
             .catch(() => {}); // Returns false if there's an error
         message.react(sent ? "✅" : "❌"); // React with the correct emoji
-    } else if (!guild.channels.cache.some((ch) => ch.topic === 'Modmail channel '+ message.author.id + '(Please do not change)')) {
+    } else if (!guild.channels.cache.some((ch) => ch.topic === 'Modmail channel '+ message.author.id + ' (Please do not change)')) {
         // If there is no thread
 
         // Sends the user a success message
@@ -100,6 +100,7 @@ module.exports = async (bot, message) => {
             .catch((err) => console.log(err));
     } else {
         // If there us already a thread then find the opened thread
+        console.log("TEST")
         const destination = guild.channels.cache.find((c) => c.topic === 'Modmail channel '+ message.author.id + ' (Please do not change)');
         const embed = new MessageEmbed()
             .setColor(good)
@@ -114,5 +115,5 @@ module.exports = async (bot, message) => {
         }
 
         message.react("❌");
-    }
+   }
 };
