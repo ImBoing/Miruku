@@ -40,7 +40,7 @@ module.exports = {
                     .setDescription(`\`\`\`${command.description || "No Description provided."}\`\`\``)
                     .addField('**Examples**', `${command.example}`, true)
                     .addField('\u200b', '\u200b', true)
-                    .addField('**Usage**', `\`${command.usage}]\``, true)
+                    .addField('**Usage**', `\`${command.usage}\``)
                     .addField('**Aliases**', `\`${command.aliases ? command.aliases.join('` `') : `${command.name}`}\``)
                     .setColor(bb)
 

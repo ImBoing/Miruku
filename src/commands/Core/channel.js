@@ -17,18 +17,14 @@ module.exports = {
         try {
             const ch = message.mentions.channels.first() || message.channel
             const guild = message.channel.guild
-            const createdBy = await guild.fetchAuditLogs()
-            .then(async audit => audit.entries.find(entry=> entry.actionType == "CHANNEL_CREATE" && entry.target.name == ch.name).executor)
-
             
 
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setColor(color.bb)
             .setAuthor(`Channel Info for ${ch.name}`)
             .setDescription(`<#${ch.id}>\nID: ${ch.id}`)
             .addField("Type", `${ch.type}`, true)
             .addField("Created at", `${moment(ch.createdAt).format('dddd, MMMM Do YYYY')}`, true)
-            .addField("Information", `>>> ${ch.nsfw ? "false" : "NSFW is disabled in this channel"}\nCreated by ${createdBy.tag}`)
             
 
             message.channel.send(embed)

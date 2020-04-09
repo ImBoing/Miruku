@@ -18,7 +18,7 @@ const load = dirs => {
         if(pull.config.aliases) pull.config.aliases.forEach(a => bot.aliases.set(a, pull.config.name));
         };
     };
-    ["Staff", "Guild", "Core", "Giveaways", "Fun", "Modmail"].forEach(x => load(x));
+    ["Staff", "Guild", "Core", "Giveaways", "Fun", "Modmail", "Utilities"].forEach(x => load(x));
     console.log(table.toString());
 };
 

@@ -32,13 +32,7 @@ module.exports = {
             if(!hacked)
                 return message.channel.send('WOOAH, who are we hacking?')
 
-                function sleep(milliseconds) {
-                    const date = Date.now();
-                    let currentDate = null;
-                        do {
-                        currentDate = Date.now();
-                        } while (currentDate - date < milliseconds);
-                      }
+            const sleep = require('../../functions.js')
 
             await message.channel.send(`Hacking ${hacked.user.username} now...`).then(async msg => {
                 await sleep(1500);

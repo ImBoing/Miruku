@@ -15,13 +15,7 @@ module.exports = {
             message.channel.send('__**Who would you like to call?**__\n`p` **∙  Call emergency services**\n`c` **∙  Phone your chef**\n`m` **∙  Text your mom**\n`b` **∙  Hit up the bomber**\n`r` **∙  Prank call**')
 
             // --------- Sleep function --------- \\
-            function sleep(milliseconds) {
-                const date = Date.now();
-                let currentDate = null;
-                do {
-                    currentDate = Date.now();
-                } while (currentDate - date < milliseconds);
-            }
+            const sleep = require('../../funtions.js')
 
             // --------- Message collector stuff --------- \\
             const filter = m => m.author.id === message.author.id
