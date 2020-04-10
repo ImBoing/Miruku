@@ -2,6 +2,7 @@ package-lock.json
 botconfig.json
 giveaways.json
 package.json
+
 .DS_Store
 
-node_modules
+
