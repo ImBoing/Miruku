@@ -15,7 +15,7 @@ module.exports = {
             message.channel.send('__**Who would you like to call?**__\n`p` **∙  Call emergency services**\n`c` **∙  Phone your chef**\n`m` **∙  Text your mom**\n`b` **∙  Hit up the bomber**\n`r` **∙  Prank call**')
 
             // --------- Sleep function --------- \\
-            const sleep = require('../../funtions.js')
+            const { sleep } = require('../../funtions.js')
 
             // --------- Message collector stuff --------- \\
             const filter = m => m.author.id === message.author.id

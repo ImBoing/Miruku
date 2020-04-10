@@ -1,6 +1,4 @@
-const Discord = require("discord.js")
-const colors = require("../../Utils/colors.json");
-const { prefix } = require("../../Utils/botconfig.json");
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     config: {
@@ -15,7 +13,7 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if(args[0] === 'roles') {
-        let rEmbed = new Discord.RichEmbed()
+        let rEmbed = new MessageEmbed()
             .setTitle(`**Roles** [${message.guild.roles.size}]`)
             .setDescription(message.guild.roles.map(r => r.name).join(", ").replace("@everyone", ", "))
 

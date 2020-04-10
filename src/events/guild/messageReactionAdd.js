@@ -22,6 +22,7 @@ module.exports = async (bot, reaction, user) => {
             } else {
                 const sentAt = new Date(fetchedMsg.createdTimestamp)
                 const embed = new MessageEmbed()
+                    .setColor(bb)
                     .setAuthor(fetchedMsg.author.username, fetchedMsg.author.displayAvatarURL())
                     .addField('Jump to message', `[**Jump!**](${fetchedMsg.url})`)
                     .setDescription(fetchedMsg.content)
@@ -53,6 +54,7 @@ module.exports = async (bot, reaction, user) => {
             } else {
                 const sentAt = new Date(reaction.message.createdTimestamp)
                 const embed = new MessageEmbed()
+                    .setColro(bb)
                     .setAuthor(reaction.message.author.username, reaction.message.author.displayAvatarURL())
                     .addField('Jump to message', `[**Jump!**](${reaction.message.url})`)
                     .setDescription(reaction.message.content)

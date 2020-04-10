@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const { MessagEmbed } = require("discord.js");
 const colors = require("../../Utils/colors.json");
 
 module.exports = {

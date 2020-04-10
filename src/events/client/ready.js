@@ -1,4 +1,4 @@
-module.exports = async bot => {
+module.exports = async (bot) => {
     const url = await bot.generateInvite("ADMINISTRATOR");
 
     console.log(`Guilds         ==          ${bot.guilds.cache.size} `);
@@ -7,7 +7,7 @@ module.exports = async bot => {
     console.log(`Time           ==          ${new Date()} `);
     console.log(`Invite         ==          ${url} `);
 
-    const { prefix } = require("../../src/Utils/botconfig.json")
+    const { prefix } = require("../../Utils/botconfig.json")
 
    let statuses = [
        `${prefix}help`,

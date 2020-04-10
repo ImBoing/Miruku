@@ -1,7 +1,3 @@
-const Discord = require("discord.js")
-const colors = require("../../Utils/colors.json");
-const { prefix } = require("../../Utils/botconfig.json");
-
 module.exports = {
     config: {
         name: "slowmode",

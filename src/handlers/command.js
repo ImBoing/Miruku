@@ -10,7 +10,7 @@ const load = dirs => {
 
         if(pull.name) {
             bot.commands.set(pull.name, pull);
-            table.addRow(file, `❎Something is wrong with this file`)
+            table.addRow(file, `❎ Something is wrong with this file`)
         } else {
             table.addRow(file, `✅`)
         }

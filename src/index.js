@@ -1,19 +1,10 @@
-/**MODMAIL
- * https://hastebin.com/birolegile.js
- * https://hastebin.com/urixuyuvur.js
- * 
- */
-
-
-
-
 // Requring the packages and modules required
 const { Client, Collection} = require("discord.js");
 const bot = new Client({ partials: ['MESSAGE', 'REACTION']});
 const fs = require("fs");
 //Used for logging bot in
-const { token } = require("../Utils/botconfig.json");
-//Modmail
+const { token } = require("./Utils/botconfig.json");
+
 
 
 //Creating command an aliases collection
@@ -22,7 +13,7 @@ const { token } = require("../Utils/botconfig.json");
 bot.categories = fs.readdirSync("./commands/");
 
 /* Needed for giveaways */
-const config = require('../Utils/botconfig.json');
+const config = require('./Utils/botconfig.json');
 bot.config = config;
 
 const { GiveawaysManager } = require('discord-giveaways');

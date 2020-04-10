@@ -52,7 +52,7 @@ module.exports = {
             let verified = false;
             let lastMessage;
             collector.on('collect', async message => {
-                const response = require("../../response.json");
+                const response = require("../../Utils/response.json");
                 const answer = response[Math.floor(Math.random() * response.length)];
                  if(message.content !== vCode) {
                     lastMessage = await message.author.send(answer + ` You have \`${count}\` ${count === 1 ? "try" : "tries"} left${count === 1 ? "!!!!!" : "."}`
