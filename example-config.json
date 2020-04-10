@@ -1,0 +1,6 @@
+{
+    "token" : "YOUR SPECIAL TOKEN",
+    "prefix" : "YOUR CHOICE",
+    "everyoneMention": false, 
+    "hostedBy": true
+}
