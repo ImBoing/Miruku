@@ -7,7 +7,7 @@ module.exports = async bot => {
     console.log(`Time           ==          ${new Date()} `);
     console.log(`Invite         ==          ${url} `);
 
-    const { prefix } = require("../../Utils/botconfig.json")
+    const { prefix } = require("../../src/Utils/botconfig.json")
 
    let statuses = [
        `${prefix}help`,

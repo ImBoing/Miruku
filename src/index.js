@@ -12,7 +12,7 @@ const { Client, Collection} = require("discord.js");
 const bot = new Client({ partials: ['MESSAGE', 'REACTION']});
 const fs = require("fs");
 //Used for logging bot in
-const { token } = require("./Utils/botconfig.json");
+const { token } = require("../Utils/botconfig.json");
 //Modmail
 
 
