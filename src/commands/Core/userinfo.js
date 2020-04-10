@@ -1,5 +1,5 @@
-const { MessagEmbed } = require("discord.js");
-const colors = require("../../Utils/colors.json");
+const { MessageEmbed } = require("discord.js");
+const { bb } = require("../../utils/colors.json");
 
 module.exports = {
     config: {
@@ -13,8 +13,8 @@ module.exports = {
         example: "`o!help`\nView all the bots commands\n\n`o!help clap`\nGet more info about the clap command"
     },
     run: async (bot, message, args) => {
-        let sEmbed = new Discord.RichEmbed()
-            .setColor(colors.crimson)
+        let sEmbed = new MessageEmbed()
+            .setColor(bb)
             .setThumbnail(message.author.displayAvatarURL)
             .setAuthor(`${message.author.username} Info`, message.author.displayAvatarURL)
             .addField("**Username:**", `${message.author.username}`, true)

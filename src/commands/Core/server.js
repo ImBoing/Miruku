@@ -1,6 +1,6 @@
-const colors = require("../../Utils/colors.json");
+const { bb }= require("../../utils/colors.json");
 const moment = require("moment")
-const { prefix } = require("../../Utils/botconfig.json");
+const { prefix } = require("../../utils/botconfig.json");
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
         const categories = message.guild.channels.cache.filter(x => x.type == "category").size
 
         const sEmbed = new MessageEmbed()
-            .setColor(colors.dodger_blue)
+            .setColor(bb)
             .setAuthor(`${message.guild.name}`)
             .setTitle(`ID: ${message.guild.id}`)
             .addField('Region', `${message.guild.region}`, true)

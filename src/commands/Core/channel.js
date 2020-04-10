@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const moment = require("moment");
-const color = require("../../Utils/colors.json");
+const color = require("../../utils/colors.json");
 
 module.exports = {
     config: {

@@ -4,7 +4,7 @@ const table = new ascii().setHeading("Command", "Status")
 
 module.exports = (bot) => {
 const load = dirs => {
-    const commands = readdirSync(`./commands/${dirs}`).filter(d => d.endsWith('.js'));
+    const commands = readdirSync(`./src/commands/${dirs}`).filter(d => d.endsWith('.js'));
     for (let file of commands) {
         const pull = require(`../commands/${dirs}/${file}`);
 
