@@ -1,6 +1,7 @@
 const { prefix } = require("../../utils/botconfig.json");
 const { MessageEmbed } = require("discord.js");
 const { good } = require("../../utils/colors.json");
+const { moment } = require('moment');
 
 module.exports = async (bot, message) => {
 
@@ -76,13 +77,29 @@ module.exports = async (bot, message) => {
             })
             .then(threadChannel => {
                 threadChannel.setTopic('Modmail channel '+ message.author.id + ' (Please do not change)')
+                //Users account information
+                const dateNow = new Date()
+                const userCreated = new Date(message.author.createdAt)
+
+                const timeDiff = Math.abs(userCreated.getTime() - dateNow.getTime());
+
+                const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+
+                //Users join info
+                const currentDate = new Date()
+                const user = guild.members.cache.find(m => m.id === message.author.id)
+                const joinedat = new Date(user.joinedAt)
+
+                const timeDif = Math.abs(joinedat.getTime() - currentDate.getTime());
+
+                const dayDif = Math.ceil(timeDif / (1000 * 3600 * 24))
                 // Instructions for the staff member
                 const embed = new MessageEmbed()
                     .setTitle("New Thread")
                     .setColor(good)
-                    .setDescription(
-                        `Type a message in this channel to reply. Any command besides modmail commands ran will be ignored, to see all modmail commands run \`${prefix}help modmail\``
-                    );
+                    .setDescription(`<@${message.author.id}> was created ${diffDays} ${diffDays > 1 ? 'days' : 'day'} ago, user joined ${dayDif} ${dayDif > 1 ? 'days' : 'day'} ago. **Using non modmail commands will be ignored in this channel.**`)
+                    .setFooter(`User id: ${message.author.id}`)
+                    .setTimestamp()
 
                 threadChannel.send(embed).then((m) => m.delete({ timeout: 900000 }));
 
