@@ -18,7 +18,9 @@ module.exports = {
 
             message.react('✅')
 
-            const user = bot.users.cache.get(message.channel.name);
+            const array = message.channel.topic
+            const id = array.split(' ')[2]
+            const user = bot.users.cache.get(id)
             const content = args.slice(0).join(" ")
             const anon = bot.users.cache.find(x => x.username === 'DRIP')
 

@@ -1,6 +1,6 @@
-const { prefix } = require("../../Utils/botconfig.json");
+const { prefix } = require("../../utils/botconfig.json");
 const { MessageEmbed } = require("discord.js");
-const { good } = require("../../Utils/colors.json");
+const { good } = require("../../utils/colors.json");
 
 module.exports = async (bot, message) => {
 
@@ -44,9 +44,8 @@ module.exports = async (bot, message) => {
             .catch(() => {}); // Returns false if there's an error
         message.react(sent ? "✅" : "❌"); // React with the correct emoji
     } else if (!guild.channels.cache.some((ch) => ch.topic === 'Modmail channel '+ message.author.id + ' (Please do not change)')) {
-        // If there is no thread
-
-        // Sends the user a success message
+        await message.react('✅')
+        // If there is no thread then send user a success message
         const opened = new MessageEmbed()
             .setColor(good)
             .setTitle("Thread Created")
@@ -54,7 +53,7 @@ module.exports = async (bot, message) => {
             .setFooter("Your message has been sent", guild.iconURL())
             .setTimestamp();
 
-        await message.author.send(opened).then(() => message.react('✅'));
+        message.author.send(opened);
         
         // Creates the thread channel
         guild.channels

@@ -14,14 +14,11 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         try {
-            if(message.channel.parentID !== '690370450219335681') return;
+            if (message.channel.parentID !== '690370450219335681') return;
 
             const array = message.channel.topic
             const id = array.split(' ')[2]
             const user = bot.users.cache.get(id)
-            
-            const channel = message.channel
-            channel.delete()
 
             const close = new MessageEmbed()
             .setColor(bad)
@@ -31,6 +28,9 @@ module.exports = {
             .setTimestamp()
 
             user.send(close)
+
+            const channel = message.channel
+            channel.delete()
 
         }
         catch(err) {
