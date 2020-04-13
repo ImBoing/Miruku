@@ -1,5 +1,3 @@
-const { prefix } = require("../../Utils/botconfig.json");
-
 module.exports = {
     config: {
         name: "clear",
@@ -13,9 +11,11 @@ module.exports = {
     run: async (bot, message, args) => {
         try {
             let count = args[0]
-                if(!count)
+                if (!count)
                     count = 11
 
+        if(!message.member.hasPermission(["MANAGE_MESSAGES"])) 
+            return message.channel.send('Hey dummy, you are missing the `MANAGE_MESSAGES` permission.\nMake sure you have access to **manage and kick members** and try again');
         message.channel.bulkDelete(count).then(fetched => {
             message.channel.bulkDelete(fetched)
             message.channel.send(`Deleted ${count} ${count > 1 ? "messages" : "message"}. Are you happy now?`).then(message => message.delete({timeout: 2500}))
