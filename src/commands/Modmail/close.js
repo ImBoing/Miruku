@@ -1,5 +1,14 @@
 const { MessageEmbed } = require("discord.js");
 const { bad } = require("../../Utils/colors.json");
+const modmail = require("../../models/modmail.js");
+const mongoose = require("mongoose");
+
+const { URI } = require('../../utils/botconfig.json')
+
+mongoose.connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
 module.exports = {
     config: {
@@ -20,6 +29,26 @@ module.exports = {
             const id = array.split(' ')[2]
             const user = bot.users.cache.get(id)
 
+
+            let usersThreads = await modmail.findOne({
+                username: user.username
+            });
+
+            if(!usersThreads) {
+                usersThreads = new modmail({
+                    username: user.username,
+                    threadCount: 1
+                });
+                await usersThreads.save().catch(err => console.log(err))
+            };
+
+            await modmail.findOne({
+                username: user.username
+            }, async (err, auser) => {
+                auser.threadCount += 1
+                await auser.save().catch(err => console.log(err))
+            })
+
             const close = new MessageEmbed()
             .setColor(bad)
             .setTitle('Thread Closed')
@@ -31,7 +60,6 @@ module.exports = {
 
             const channel = message.channel
             channel.delete()
-
         }
         catch(err) {
             const owner = await bot.fetchApplication().then(async application => `${application.owner.tag}`)

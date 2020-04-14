@@ -1,7 +1,7 @@
 const { prefix } = require("../../utils/botconfig.json");
 const { MessageEmbed } = require("discord.js");
 const { good } = require("../../utils/colors.json");
-const { moment } = require('moment');
+const thread = require('../../models/modmail.js');
 
 module.exports = async (bot, message) => {
 
@@ -75,7 +75,7 @@ module.exports = async (bot, message) => {
                     }
                 ]
             })
-            .then(threadChannel => {
+            .then(async threadChannel => {
                 threadChannel.setTopic('Modmail channel '+ message.author.id + ' (Please do not change)')
                 //Users account information
                 const dateNow = new Date()
@@ -93,11 +93,23 @@ module.exports = async (bot, message) => {
                 const timeDif = Math.abs(joinedat.getTime() - currentDate.getTime());
 
                 const dayDif = Math.ceil(timeDif / (1000 * 3600 * 24))
+
+                //Users modmail info
+                const threadCount = await thread.findOne({
+                    username: message.author.username
+                });
+
+                let number = threadCount.threadCount
+                if (!threadCount) {
+                    number = 'no'
+                }
+
+
                 // Instructions for the staff member
                 const embed = new MessageEmbed()
                     .setTitle("New Thread")
                     .setColor(good)
-                    .setDescription(`<@${message.author.id}> was created ${diffDays} ${diffDays > 1 ? 'days' : 'day'} ago, user joined ${dayDif} ${dayDif > 1 ? 'days' : 'day'} ago. **Using non modmail commands will be ignored in this channel.**`)
+                    .setDescription(`<@${message.author.id}> was created ${diffDays} ${diffDays > 1 ? 'days' : 'day'} ago, user joined ${dayDif} ${dayDif > 1 ? 'days' : 'day'} ago with ${number} previous ${number > 1 ? 'thread' : 'threads'}. **Using non modmail commands will be ignored in this channel.**`)
                     .setFooter(`User id: ${message.author.id}`)
                     .setTimestamp()
 
